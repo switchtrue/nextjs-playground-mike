@@ -6,7 +6,7 @@ export function ProductDetailPageBuilder() {
   return (
     <div className="bg-background text-foreground">
       <div className="container mx-auto px-4 md:px-6 py-8 md:py-12">
-        <ProductInformation />
+        <ProductInformation product="My Product" />
         <div className="mt-12 md:mt-16">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             Recommended Products
