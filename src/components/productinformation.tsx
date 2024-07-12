@@ -11,7 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export function ProductInformation(props: { product: string }) {
-  console.log(props);
   return (
     <div className="grid md:grid-cols-2 gap-8 md:gap-12">
       <div>
