@@ -32,10 +32,10 @@ export default function Home() {
         </li>
         <li className="border-b-2 p-6">
           <Link
-            href="/client-recommendations-and-reviews-with-data-fetching"
+            href="/client-recommendations-and-reviews-with-client-fetching"
             className="underline"
           >
-            /client-recommendations-and-reviews-with-data-fetching
+            /client-recommendations-and-reviews-with-client-fetching
           </Link>
           <p>
             The core page is a server component, but the list of recommended

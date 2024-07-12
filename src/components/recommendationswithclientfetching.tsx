@@ -6,7 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export function RecommendationsWithFetching() {
+export function RecommendationsWithClientFetching() {
   const [recommendations, setRecommendations] = useState<any>();
 
   useEffect(() => {

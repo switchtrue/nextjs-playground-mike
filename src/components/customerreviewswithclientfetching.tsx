@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useState, useEffect } from "react";
 
-export function CustomerReviewsWithFetching() {
+export function CustomerReviewsWithClientFetching() {
   const [users, setUsers] = useState<any>();
 
   useEffect(() => {
