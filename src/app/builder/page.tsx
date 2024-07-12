@@ -5,7 +5,7 @@ import {
   fetchOneEntry,
   getBuilderSearchParams,
   isPreviewing,
-} from "@builder.io/sdk-react-nextjs";
+} from "@builder.io/sdk-react/edge";
 import { customComponents } from "../../builder-registry";
 
 export const dynamic = "force-dynamic";

@@ -1,5 +1,4 @@
-import dynamic from "next/dynamic";
-import { type RegisteredComponent } from "@builder.io/sdk-react";
+import { type RegisteredComponent } from "@builder.io/sdk-react/edge";
 import { ProductInformation } from "./components/productinformation";
 import { CustomerReviewsWithClientFetching } from "./components/customerreviewswithclientfetching";
 import { RecommendationsWithClientFetching } from "./components/recommendationswithclientfetching";
