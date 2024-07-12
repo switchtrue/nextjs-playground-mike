@@ -8,7 +8,7 @@ import {
 } from "@builder.io/sdk-react-nextjs";
 import { customComponents } from "../../builder-registry";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: {
