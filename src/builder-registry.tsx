@@ -1,11 +1,13 @@
+import dynamic from "next/dynamic";
 import { type RegisteredComponent } from "@builder.io/sdk-react/edge";
-import { ProductInformation } from "./components/productinformation";
-import { CustomerReviewsWithClientFetching } from "./components/customerreviewswithclientfetching";
-import { RecommendationsWithClientFetching } from "./components/recommendationswithclientfetching";
 
 export const customComponents: RegisteredComponent[] = [
   {
-    component: ProductInformation,
+    component: dynamic(() =>
+      import("./components/productinformation").then(
+        (mod) => mod.ProductInformation
+      )
+    ),
     name: "Product Information",
     inputs: [
       {
@@ -15,7 +17,11 @@ export const customComponents: RegisteredComponent[] = [
     ],
   },
   {
-    component: CustomerReviewsWithClientFetching,
+    component: dynamic(() =>
+      import("./components/customerreviewswithclientfetching").then(
+        (mod) => mod.CustomerReviewsWithClientFetching
+      )
+    ),
     name: "Customer Reviews",
     inputs: [
       {
@@ -25,7 +31,11 @@ export const customComponents: RegisteredComponent[] = [
     ],
   },
   {
-    component: RecommendationsWithClientFetching,
+    component: dynamic(() =>
+      import("./components/recommendationswithclientfetching").then(
+        (mod) => mod.RecommendationsWithClientFetching
+      )
+    ),
     name: "Recommendations",
     inputs: [
       {

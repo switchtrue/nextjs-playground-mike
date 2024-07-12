@@ -1,12 +1,11 @@
 // Example file structure, app/[...slug]/page.tsx
 // You could alternatively use src/app/[...slug]/page.tsx/
+import BuilderContent from "@/components/builder";
 import {
-  Content,
   fetchOneEntry,
   getBuilderSearchParams,
   isPreviewing,
 } from "@builder.io/sdk-react/edge";
-import { customComponents } from "../../builder-registry";
 
 export const dynamic = "force-dynamic";
 
@@ -45,13 +44,7 @@ export default async function Page(props: PageProps) {
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Content
-        content={content}
-        apiKey={PUBLIC_API_KEY}
-        model="page"
-        customComponents={customComponents}
-        data={product}
-      />
+      <BuilderContent content={content} data={product} />
     </main>
   );
 }
