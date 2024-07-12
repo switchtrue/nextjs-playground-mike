@@ -11,28 +11,16 @@ export const customComponents: RegisteredComponent[] = [
     inputs: [
       {
         name: "product",
-        type: "object",
+        type: "string",
       },
     ],
   },
   {
     component: CustomerReviewsWithClientFetching,
     name: "Customer Reviews",
-    inputs: [
-      {
-        name: "product",
-        type: "object",
-      },
-    ],
   },
   {
     component: RecommendationsWithClientFetching,
     name: "Recommendations",
-    inputs: [
-      {
-        name: "product",
-        type: "object",
-      },
-    ],
   },
 ];
