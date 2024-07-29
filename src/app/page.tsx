@@ -18,6 +18,15 @@ export default function Home() {
           </p>
         </li>
         <li className="border-b-2 p-6">
+          <Link href="/server-only-with-suspense" className="underline">
+            /server-only-with-suspense
+          </Link>
+          <p>
+            An example of server only (no "use client") that has suspense
+            boundaries around recommendations and customer reviews.
+          </p>
+        </li>
+        <li className="border-b-2 p-6">
           <Link
             href="/client-recommendations-and-reviews"
             className="underline"
