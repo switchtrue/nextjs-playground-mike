@@ -49,13 +49,22 @@ export default function Home() {
             /builder
           </Link>
           <p>
-            Integrated with Builder.io do demonstrate and ideal e-commerce
+            Integrated with Builder.io to demonstrate and ideal e-commerce
             experience. The core page and product information is a client
             component fully rendered server side. Loading skeletons for
             recommended products and customer reviews are also server side
             rendered and then the actual data is fetched clientside. All three
             core components are registered with Builder and fully editable using
             the Builder visual editor.
+          </p>
+        </li>
+        <li className="border-b-2 p-6">
+          <Link href="/builder-with-suspense" className="underline">
+            /builder-with-suspense
+          </Link>
+          <p>
+            The same as /builder example but sets up Recommendations and
+            Customer Reviews using Suspense and fallback skeletons.
           </p>
         </li>
       </ul>

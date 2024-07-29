@@ -39,8 +39,36 @@ export const customComponents: RegisteredComponent[] = [
     name: "Recommendations",
     inputs: [
       {
+        name: "Constructor Pod ID",
+        type: "string",
+      },
+    ],
+  },
+  {
+    component: dynamic(() =>
+      import("./components/customerreviewsforsuspense").then(
+        (mod) => mod.CustomerReviewsForSuspense
+      )
+    ),
+    name: "Customer Reviews (Suspense)",
+    inputs: [
+      {
         name: "product",
         type: "object",
+      },
+    ],
+  },
+  {
+    component: dynamic(() =>
+      import("./components/recommendationsforsuspense").then(
+        (mod) => mod.RecommendationsForSuspense
+      )
+    ),
+    name: "Recommendations (Suspense)",
+    inputs: [
+      {
+        name: "Constructor Pod ID",
+        type: "string",
       },
     ],
   },
