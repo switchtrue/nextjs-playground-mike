@@ -22,7 +22,7 @@ export default function Home() {
             /server-only-with-suspense
           </Link>
           <p>
-            An example of server only (no "use client") that has suspense
+            An example of server only (no use client) that has suspense
             boundaries around recommendations and customer reviews.
           </p>
         </li>
