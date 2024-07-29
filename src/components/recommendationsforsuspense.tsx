@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
@@ -20,9 +20,7 @@ export function RecommendationsForSuspense() {
 }
 
 const Recommendations = () => {
-  const recommendations: any = recommendationsResource.read();
-
-  console.log(recommendations);
+  const recommendations: any = use(recommendationsResource);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

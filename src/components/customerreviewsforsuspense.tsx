@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,7 +17,7 @@ export function CustomerReviewsForSuspense() {
 }
 
 function CustomerReviews() {
-  const users: any = usersResource.read();
+  const users: any = use(usersResource);
 
   return (
     <div className="grid gap-6">

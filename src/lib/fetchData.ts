@@ -1,18 +1,12 @@
 import wrapPromise from "./wrapPromise";
 
-function fetchData(url: string) {
-  // const promise = fetch(url).then((res) => res.json());
-  const promise = fetchDataWithDelay(url);
-
-  return wrapPromise(promise);
-}
-
-async function fetchDataWithDelay(url: string) {
+async function fetchData(url: string) {
+  // Arbitrary delay to make async fetches more obvious
   await new Promise((resolve) => {
     setTimeout(resolve, 5000);
   });
-
-  return fetch(url, { cache: "no-store" }).then((res) => res.json());
+  const res = await fetch(url);
+  return res.json();
 }
 
 export default fetchData;
