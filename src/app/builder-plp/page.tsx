@@ -33,7 +33,10 @@ export default async function Page(props: PageProps) {
 
   let url =
     "https://ac.cnstrc.com/browse/Type/Collars?key=key_pAY7o2WrUzyvUaGj";
-  if (Object.keys(props.searchParams).length > 0) {
+  const filterQueryParam = Object.keys(props.searchParams).find((k) =>
+    k.startsWith("filters")
+  );
+  if (filterQueryParam) {
     url += `&${Object.keys(props.searchParams)[0]}=${
       Object.values(props.searchParams)[0]
     }`;
