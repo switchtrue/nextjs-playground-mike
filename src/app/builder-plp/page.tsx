@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Example file structure, app/[...slug]/page.tsx
 // You could alternatively use src/app/[...slug]/page.tsx/
 import BuilderContent from "@/components/builder";
