@@ -18,6 +18,22 @@ export const customComponents: RegisteredComponent[] = [
   },
   {
     component: dynamic(() =>
+      import("./components/productlisting").then((mod) => mod.ProductListing)
+    ),
+    name: "Product Listing",
+    inputs: [
+      {
+        name: "results",
+        type: "object",
+      },
+      {
+        name: "filters",
+        type: "object",
+      },
+    ],
+  },
+  {
+    component: dynamic(() =>
       import("./components/customerreviewswithclientfetching").then(
         (mod) => mod.CustomerReviewsWithClientFetching
       )
