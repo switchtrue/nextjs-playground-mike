@@ -19,9 +19,9 @@ export function ProductListing(props: { results: any; filters: any }) {
     }
   };
 
-  if (!props.results || !props.filters) {
-    return <p>Loading...</p>;
-  }
+  //   if (!props.results || !props.filters) {
+  //     return <p>Loading...</p>;
+  //   }
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12">
@@ -86,7 +86,7 @@ export function ProductListing(props: { results: any; filters: any }) {
                 className="bg-background rounded-lg shadow-sm overflow-hidden"
               >
                 <img
-                  src="/placeholder.svg"
+                  src={product.variations[0].data.image_url}
                   alt={product.variations[0].value}
                   width={300}
                   height={300}
