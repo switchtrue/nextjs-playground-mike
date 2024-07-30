@@ -27,6 +27,10 @@ export const customComponents: RegisteredComponent[] = [
         type: "object",
       },
       {
+        name: "facets",
+        type: "object",
+      },
+      {
         name: "filters",
         type: "object",
       },

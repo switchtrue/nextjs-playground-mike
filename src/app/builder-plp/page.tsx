@@ -31,19 +31,31 @@ export default async function Page(props: PageProps) {
     userAttributes: { urlPath },
   });
 
-  let url =
-    "https://ac.cnstrc.com/browse/Type/Collars?key=key_pAY7o2WrUzyvUaGj";
-  const filterQueryParam = Object.keys(props.searchParams).find((k) =>
-    k.startsWith("filters")
+  // Get all the query strings that aren't related to Builder
+  const filterQueryParams = Object.keys(props.searchParams).filter(
+    (k) => !k.startsWith("builder") && !k.startsWith("__builder_editing__")
   );
-  if (filterQueryParam) {
-    url += `&${Object.keys(props.searchParams)[0]}=${
-      Object.values(props.searchParams)[0]
-    }`;
+
+  const params = new URLSearchParams();
+  const filters: any = {};
+  for (let filter of filterQueryParams) {
+    if (typeof props.searchParams[filter] === "string") {
+      params.append(`filters[${filter}]`, props.searchParams[filter]);
+      filters[filter] = [props.searchParams[filter]];
+    } else {
+      for (let filterValue of props.searchParams[filter]) {
+        params.append(`filters[${filter}]`, filterValue);
+      }
+      filters[filter] = props.searchParams[filter];
+    }
   }
+
+  params.append("key", "key_pAY7o2WrUzyvUaGj");
+  let url = `https://ac.cnstrc.com/browse/Type/Collars?${params.toString()}`;
 
   const response = await fetch(url);
   const productsRaw = await response.json();
+  productsRaw.filters = filters;
 
   const canShowContent = content || isPreviewing(props.searchParams);
 

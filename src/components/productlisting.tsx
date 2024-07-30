@@ -1,27 +1,56 @@
 "use client";
 
+import { useOptimistic, useTransition } from "react";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 
-export function ProductListing(props: { results: any; filters: any }) {
+export function ProductListing(props: {
+  results: any;
+  facets: any;
+  filters: any;
+}) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  let [optimisticFilters, setOptimisticFilters] = useOptimistic(props.filters);
+  let [pending, startTransition] = useTransition();
 
   const onFilterChange = (facet: string, option: string, value: boolean) => {
+    let nextValues;
     if (value) {
-      const urlQueryString = `filters[${facet}]=${option}`;
-      router.push(`/builder-plp?${urlQueryString}`, { scroll: false });
+      // We are checking the filter to true
+      nextValues = optimisticFilters[facet] || [];
+      nextValues.push(option);
     } else {
-      router.push(`/builder-plp`, { scroll: false });
+      // We are unchecking the filter
+      const index = optimisticFilters[facet]?.indexOf(option);
+      if (index > -1) {
+        // only splice array when item is found
+        nextValues = [...optimisticFilters[facet]];
+        nextValues.splice(index, 1);
+      }
     }
-  };
+    const nextFilters = {
+      ...optimisticFilters,
+      [facet]: nextValues,
+    };
 
-  //   if (!props.results || !props.filters) {
-  //     return <p>Loading...</p>;
-  //   }
+    const params = new URLSearchParams();
+    if (Object.keys(nextFilters).length > 0) {
+      for (let filter of Object.keys(nextFilters)) {
+        if (nextFilters[filter]) {
+          for (let value of nextFilters[filter]) {
+            params.append(filter, value);
+          }
+        }
+      }
+    }
+
+    startTransition(() => {
+      setOptimisticFilters(nextFilters);
+      router.push(`/builder-plp?${params.toString()}`, { scroll: false });
+    });
+  };
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12">
@@ -30,34 +59,27 @@ export function ProductListing(props: { results: any; filters: any }) {
           <h2 className="text-lg font-semibold mb-4">Filters</h2>
           <div className="grid gap-4">
             <div>
-              {props.filters
-                .filter((filter: any) => filter.type === "multiple")
-                .map((filter: any) => {
+              {props.facets
+                .filter((facet: any) => facet.type === "multiple")
+                .map((facet: any) => {
                   return (
-                    <span key={filter.name}>
+                    <span key={facet.name}>
                       <h3 className="text-base font-medium mb-2">
-                        {filter.display_name}
+                        {facet.display_name}
                       </h3>
                       <div className="grid gap-2">
-                        {filter.options.map((option: any) => {
+                        {facet.options.map((option: any) => {
                           return (
                             <Label
                               key={option.value}
                               className="flex items-center gap-2 font-normal"
                             >
                               <Checkbox
-                                checked={
-                                  searchParams
-                                    .toString()
-                                    .includes(
-                                      filter.name.replaceAll(" ", "+")
-                                    ) &&
-                                  searchParams
-                                    .toString()
-                                    .includes(option.value.replaceAll(" ", "+"))
-                                }
+                                checked={optimisticFilters[
+                                  facet.name
+                                ]?.includes(option.value)}
                                 onCheckedChange={(val: boolean) =>
-                                  onFilterChange(filter.name, option.value, val)
+                                  onFilterChange(facet.name, option.value, val)
                                 }
                               />
                               {option.display_name}
