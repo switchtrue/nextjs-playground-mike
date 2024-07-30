@@ -11,9 +11,17 @@ export function ProductListing(props: { results: any; filters: any }) {
   const searchParams = useSearchParams();
 
   const onFilterChange = (facet: string, option: string, value: boolean) => {
-    const urlQueryString = `filters[${facet}]=${option}`;
-    router.push(`/builder-plp?${urlQueryString}`, { scroll: false });
+    if (value) {
+      const urlQueryString = `filters[${facet}]=${option}`;
+      router.push(`/builder-plp?${urlQueryString}`, { scroll: false });
+    } else {
+      router.push(`/builder-plp`, { scroll: false });
+    }
   };
+
+  if (!props.results || !props.filters) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="container mx-auto px-4 md:px-6 py-12">
