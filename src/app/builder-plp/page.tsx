@@ -39,8 +39,6 @@ export default async function Page(props: PageProps) {
     }`;
   }
 
-  console.log(url);
-
   const response = await fetch(url);
   const productsRaw = await response.json();
 
