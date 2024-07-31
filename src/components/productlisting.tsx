@@ -52,8 +52,13 @@ export function ProductListing(props: {
     });
   };
 
+  let rootClasses = "container mx-auto px-4 md:px-6 py-12";
+  if (pending) {
+    rootClasses += " animate-pulse animate-bounce";
+  }
+
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12">
+    <div className={rootClasses}>
       <div className="grid md:grid-cols-[240px_1fr] gap-8">
         <div className="bg-background rounded-lg p-6 shadow-sm">
           <h2 className="text-lg font-semibold mb-4">Filters</h2>

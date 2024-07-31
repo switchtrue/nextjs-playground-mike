@@ -37,6 +37,11 @@ export default async function Page(props: PageProps) {
     (k) => !k.startsWith("builder") && !k.startsWith("__builder_editing__")
   );
 
+  // Deliberately make changing filters slow so we can see the loading state
+  if (filterQueryParams.length > 0) {
+    await new Promise((r) => setTimeout(r, 5000));
+  }
+
   const params = new URLSearchParams();
   const filters: any = {};
   for (let filter of filterQueryParams) {
