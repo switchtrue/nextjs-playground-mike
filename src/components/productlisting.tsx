@@ -54,7 +54,7 @@ export function ProductListing(props: {
 
   let rootClasses = "container mx-auto px-4 md:px-6 py-12";
   if (pending) {
-    rootClasses += " animate-pulse animate-bounce";
+    rootClasses += " animate-pulse ";
   }
 
   return (
